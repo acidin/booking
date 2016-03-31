@@ -1,8 +1,5 @@
 import * as types from '../constants/ActionTypes'
 
-export const REQUEST_TODOS = 'REQUEST_TODOS'
-export const RECEIVE_TODOS = 'RECEIVE_TODOS'
-
 export function addTodo(text) {
     return {type: types.ADD_TODO, text}
 }
@@ -29,15 +26,14 @@ export function clearCompleted() {
 
 function requestTodos() {
     return {
-        type: REQUEST_TODOS
+        type: types.REQUEST_TODOS
     }
 }
 
 function receiveTodos(json) {
     return {
-        type: RECEIVE_TODOS,
-        posts: json,
-        receivedAt: Date.now()
+        type: types.RECEIVE_TODOS,
+        todos: json
     }
 }
 

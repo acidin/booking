@@ -8,6 +8,18 @@ function getTodos(req, res) {
         if (err) {
             res.send(err);
         } else {
+            todos = [
+                {
+                    text: 'Mock 数据规则增强',
+                    completed: false,
+                    id: 0
+                },
+                {
+                    text: 'URL 定位资源',
+                    completed: false,
+                    id: 1
+                }
+            ]
             res.json(todos);
         }
     });
