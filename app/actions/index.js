@@ -10,6 +10,11 @@ function convertTodo(todo) {
     }
 }
 
+const JSON_HEADERS = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+}
+
 function _addTodo(todo) {
     return {type: types.ADD_TODO, todo}
 }
@@ -17,23 +22,40 @@ function _addTodo(todo) {
 export function addTodo(text) {
     return dispatch => {
         return fetch(`/api/todos/`, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
+            headers: JSON_HEADERS,
+            method: 'POST',
             body: JSON.stringify({text, completed: false})
         }).then(response => response.json())
-            .then(json => dispatch(_addTodo(convertTodo(json))))
+            .then(json => dispatch(_addTodo(convertTodo(json.result))))
     }
 }
 
-export function deleteTodo(id) {
+function _deleteTodo(id) {
     return {type: types.DELETE_TODO, id}
 }
 
+export function deleteTodo(id) {
+    return dispatch => {
+        return fetch(`/api/todos/${id}`, {
+            method: 'DELETE'
+        }).then(response => response.json())
+            .then(json => dispatch(_deleteTodo(id)))
+    }
+}
+
+function _updateTodo(todo) {
+    return {type: types.EDIT_TODO, todo}
+}
+
 export function editTodo(id, text) {
-    return {type: types.EDIT_TODO, id, text}
+    return dispatch => {
+        return fetch(`/api/todos/${id}`, {
+            headers: JSON_HEADERS,
+            method: 'PUT',
+            body: JSON.stringify({text})
+        }).then(response => response.json())
+            .then(json => dispatch(_updateTodo(convertTodo(json.result))))
+    }
 }
 
 export function completeTodo(id) {
@@ -57,7 +79,7 @@ function requestTodos() {
 function receiveTodos(json) {
     return {
         type: types.RECEIVE_TODOS,
-        todos: json.map(convertTodo)
+        todos: json.result.map(convertTodo)
     }
 }
 

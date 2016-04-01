@@ -8,7 +8,13 @@ import {
     RECEIVE_TODOS
 } from '../constants/ActionTypes'
 
-const initialState = []
+const initialState = [
+    {
+        id: 0,
+        text: 'TODO',
+        completed: false
+    }
+]
 
 export default function todos(state = initialState, action) {
     switch (action.type) {
@@ -26,7 +32,7 @@ export default function todos(state = initialState, action) {
         case EDIT_TODO:
             return state.map(todo =>
                 todo.id === action.id ?
-                    Object.assign({}, todo, {text: action.text}) :
+                    action.todo :
                     todo
             )
 

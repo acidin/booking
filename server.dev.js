@@ -1,7 +1,7 @@
-var bodyParser = require("body-parser")
-var mongoose = require("mongoose")
+var bodyParser = require('body-parser')
+var mongoose = require('mongoose')
 //controllers
-var todoController = require("./server/todoController")
+var todoController = require('./server/todoController')
 var webpack = require('webpack')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
