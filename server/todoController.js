@@ -1,8 +1,10 @@
 var util = require('util')
+var async = require('async')
 var Todo = require("./todo")
 
 var router = require("express").Router()
-router.route("/todos/:id?").get(getTodos).post(addTodo).delete(deleteTodo).put(updateTodo)
+router.route("/todos").get(getTodos).post(addTodo).patch(updateTodos)
+router.route("/todos/:id").delete(deleteTodo).patch(updateTodo)
 
 var SUCCESS_CODE = 200
 var FAILED_CODE = 500
@@ -67,6 +69,24 @@ function updateTodo(req, res) {
     }, (err, todo) => {
         res.json(getResult(err, todo))
     })
+}
+
+function updateTodos(req, res) {
+    var ids = req.body.ids
+    var completed = req.body.completed
+    var newTodos = []
+    async.eachSeries(ids, function (id, cb) {
+        Todo.findOneAndUpdate({_id: id}, {completed}, {
+            new: true
+        }, (err, todo) => {
+            if (!err) {
+                newTodos.push(todo)
+                cb()
+            }
+        })
+    }, function(err) {
+        res.json(getResult(err, newTodos))
+    });
 }
 
 module.exports = router

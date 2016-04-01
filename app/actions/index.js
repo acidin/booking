@@ -51,19 +51,45 @@ export function editTodo(id, text) {
     return dispatch => {
         return fetch(`/api/todos/${id}`, {
             headers: JSON_HEADERS,
-            method: 'PUT',
+            method: 'PATCH',
             body: JSON.stringify({text})
         }).then(response => response.json())
             .then(json => dispatch(_updateTodo(convertTodo(json.result))))
     }
 }
 
-export function completeTodo(id) {
-    return {type: types.COMPLETE_TODO, id}
+function _completeTodo(todo) {
+    return {type: types.COMPLETE_TODO, todo}
 }
 
-export function completeAll() {
-    return {type: types.COMPLETE_ALL}
+export function completeTodo(id, completed) {
+    return dispatch => {
+        return fetch(`/api/todos/${id}`, {
+            headers: JSON_HEADERS,
+            method: 'PATCH',
+            body: JSON.stringify({completed: completed})
+        }).then(response => response.json())
+            .then(json => dispatch(_completeTodo(convertTodo(json.result))))
+    }
+}
+
+function _completeAll(todos) {
+    return {type: types.COMPLETE_ALL, todos}
+}
+
+export function completeAll(todos) {
+    return dispatch => {
+        const areAllCompleted = todos.every(todo => todo.completed)
+        const ids = todos.filter(todo => {
+            return todo.completed === areAllCompleted
+        }).map(todo => todo.id)
+        return fetch(`/api/todos/`, {
+            headers: JSON_HEADERS,
+            method: 'PATCH',
+            body: JSON.stringify({ids, completed: !areAllCompleted})
+        }).then(response => response.json())
+            .then(json => dispatch(_completeAll(json.result.map(convertTodo))))
+    }
 }
 
 export function clearCompleted() {
