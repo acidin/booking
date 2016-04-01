@@ -1,50 +1,38 @@
-var Todo = require("./todo");
+var Todo = require("./todo")
 
-var router = require("express").Router();
-router.route("/todos/:id?").get(getTodos).post(addTodo).delete(deleteTodo);
+var router = require("express").Router()
+router.route("/todos/:id?").get(getTodos).post(addTodo).delete(deleteTodo)
 
 function getTodos(req, res) {
     Todo.find(function (err, todos) {
         if (err) {
-            res.send(err);
+            res.send(err)
         } else {
-            todos = [
-                {
-                    text: 'Mock 数据规则增强',
-                    completed: false,
-                    id: 0
-                },
-                {
-                    text: 'URL 定位资源',
-                    completed: false,
-                    id: 1
-                }
-            ]
-            res.json(todos);
+            res.json(todos)
         }
-    });
+    })
 }
 
 function addTodo(req, res) {
-    var todo = new Todo(Object.assign({}, req.body));
+    var todo = new Todo(Object.assign({}, req.body))
     todo.save(function (err) {
         if (err) {
-            res.send(err);
+            res.send(err)
         } else {
-            res.json(todo);
+            res.json(todo)
         }
-    });
+    })
 }
 
 function deleteTodo(req, res) {
-    var id = req.params.id;
+    var id = req.params.id
     Todo.remove({_id: id}, function (err, removed) {
         if (err) {
-            res.send(err);
+            res.send(err)
         } else {
-            res.json(removed);
+            res.json(removed)
         }
-    });
+    })
 }
 
-module.exports = router;
+module.exports = router

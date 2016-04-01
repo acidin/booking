@@ -11,7 +11,6 @@ class TodoTextInput extends Component {
 
     handleSubmit(e) {
         const text = e.target.value.trim()
-        console.log(text)
         if (e.which === 13) {
             this.props.onSave(text)
             if (this.props.newTodo) {

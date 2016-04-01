@@ -1,7 +1,31 @@
 import * as types from '../constants/ActionTypes'
+import fetch from 'isomorphic-fetch'
+
+function convertTodo(todo) {
+    const {text, completed} = todo
+    return {
+        id: todo._id,
+        text,
+        completed
+    }
+}
+
+function _addTodo(todo) {
+    return {type: types.ADD_TODO, todo}
+}
 
 export function addTodo(text) {
-    return {type: types.ADD_TODO, text}
+    return dispatch => {
+        return fetch(`/api/todos/`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({text, completed: false})
+        }).then(response => response.json())
+            .then(json => dispatch(_addTodo(convertTodo(json))))
+    }
 }
 
 export function deleteTodo(id) {
@@ -33,7 +57,7 @@ function requestTodos() {
 function receiveTodos(json) {
     return {
         type: types.RECEIVE_TODOS,
-        todos: json
+        todos: json.map(convertTodo)
     }
 }
 
