@@ -8,13 +8,7 @@ import {
     RECEIVE_TODOS
 } from '../constants/ActionTypes'
 
-const initialState = [
-    //{
-    //    text: 'Mock 数据规则增强',
-    //    completed: false,
-    //    id: 0
-    //}
-]
+const initialState = []
 
 export default function todos(state = initialState, action) {
     switch (action.type) {

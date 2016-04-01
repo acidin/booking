@@ -37,17 +37,11 @@ function receiveTodos(json) {
     }
 }
 
-function _fetchTodos() {
+export function fetchTodos() {
     return dispatch => {
         dispatch(requestTodos())
         return fetch(`/api/todos/`)
             .then(response => response.json())
             .then(json => dispatch(receiveTodos(json)))
-    }
-}
-
-export function fetchTodos() {
-    return (dispatch, getState) => {
-        dispatch(_fetchTodos())
     }
 }

@@ -51,9 +51,9 @@ class TodoItem extends Component {
 
         return (
             <li className={classnames({
-        completed: todo.completed,
-        editing: this.state.editing
-      })}>
+                completed: todo.completed,
+                editing: this.state.editing
+              })}>
                 {element}
             </li>
         )

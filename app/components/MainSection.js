@@ -52,7 +52,7 @@ class MainSection extends Component {
     }
 
     render() {
-        const { todos, actions } = this.props
+        const { todos, actions, isFetching } = this.props
         const { filter } = this.state
 
         const filteredTodos = todos.filter(TODO_FILTERS[filter])
@@ -60,14 +60,20 @@ class MainSection extends Component {
                 todo.completed ? count + 1 : count,
             0
         )
+        const loadingStyle = {
+            padding: '10px',
+            fontSize: '14px'
+        }
 
         return (
             <section className="main">
                 {this.renderToggleAll(completedCount)}
                 <ul className="todo-list">
-                    {filteredTodos.map(todo =>
-                        <TodoItem key={todo.id} todo={todo} {...actions} />
-                    )}
+                    {
+                        isFetching ? <li style={loadingStyle}>加载中....</li> : filteredTodos.map(todo =>
+                            <TodoItem key={todo.id} todo={todo} {...actions} />
+                        )
+                    }
                 </ul>
                 {this.renderFooter(completedCount)}
             </section>
@@ -77,7 +83,8 @@ class MainSection extends Component {
 
 MainSection.propTypes = {
     todos: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired
 }
 
 export default MainSection

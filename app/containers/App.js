@@ -8,16 +8,16 @@ import * as TodoActions from '../actions'
 class App extends Component {
 
     componentDidMount() {
-        const { dispatch } = this.props
-        dispatch(TodoActions.fetchTodos())
+        const { actions } = this.props
+        actions.fetchTodos()
     }
 
     render() {
-        const { todos, actions } = this.props
+        const { todos, actions, isFetching } = this.props
         return (
             <div>
                 <Header addTodo={actions.addTodo}/>
-                <MainSection todos={todos} actions={actions}/>
+                <MainSection todos={todos} actions={actions} isFetching={isFetching}/>
             </div>
         )
     }
@@ -26,19 +26,23 @@ class App extends Component {
 App.propTypes = {
     todos: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
+    isFetching: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state) {
+    const { todos, appStatus} = state
+    const { isFetching } = {
+        isFetching: appStatus.isFetching
+    }
     return {
-        todos: state.todos
+        todos,
+        isFetching
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(TodoActions, dispatch),
-        dispatch
+        actions: bindActionCreators(TodoActions, dispatch)
     }
 }
 
