@@ -1,15 +1,6 @@
 import * as types from '../constants/ActionTypes'
 import fetch from 'isomorphic-fetch'
 
-function convertTodo(todo) {
-    const {text, completed} = todo
-    return {
-        id: todo._id,
-        text,
-        completed
-    }
-}
-
 const JSON_HEADERS = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
@@ -26,7 +17,7 @@ export function addTodo(text) {
             method: 'POST',
             body: JSON.stringify({text, completed: false})
         }).then(response => response.json())
-            .then(json => dispatch(_addTodo(convertTodo(json.result))))
+            .then(json => dispatch(_addTodo(json.result)))
     }
 }
 
@@ -51,10 +42,10 @@ export function editTodo(id, text) {
     return dispatch => {
         return fetch(`/api/todos/${id}`, {
             headers: JSON_HEADERS,
-            method: 'PATCH',
+            method: 'PUT',
             body: JSON.stringify({text})
         }).then(response => response.json())
-            .then(json => dispatch(_updateTodo(convertTodo(json.result))))
+            .then(json => dispatch(_updateTodo(json.result)))
     }
 }
 
@@ -66,10 +57,10 @@ export function completeTodo(id, completed) {
     return dispatch => {
         return fetch(`/api/todos/${id}`, {
             headers: JSON_HEADERS,
-            method: 'PATCH',
+            method: 'PUT',
             body: JSON.stringify({completed: completed})
         }).then(response => response.json())
-            .then(json => dispatch(_completeTodo(convertTodo(json.result))))
+            .then(json => dispatch(_completeTodo(json.result)))
     }
 }
 
@@ -85,10 +76,10 @@ export function completeAll(todos) {
         }).map(todo => todo.id)
         return fetch(`/api/todos/`, {
             headers: JSON_HEADERS,
-            method: 'PATCH',
+            method: 'PUT',
             body: JSON.stringify({ids, completed: !areAllCompleted})
         }).then(response => response.json())
-            .then(json => dispatch(_completeAll(json.result.map(convertTodo))))
+            .then(json => dispatch(_completeAll(json.result)))
     }
 }
 
@@ -105,7 +96,7 @@ function requestTodos() {
 function receiveTodos(json) {
     return {
         type: types.RECEIVE_TODOS,
-        todos: json.result.map(convertTodo)
+        todos: json.result
     }
 }
 

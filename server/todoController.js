@@ -3,11 +3,29 @@ var async = require('async')
 var Todo = require("./todo")
 
 var router = require("express").Router()
-router.route("/todos").get(getTodos).post(addTodo).patch(updateTodos)
-router.route("/todos/:id").delete(deleteTodo).patch(updateTodo)
+router.route("/todos").get(getTodos).post(addTodo).put(updateTodos)
+router.route("/todos/:id").delete(deleteTodo).put(updateTodo)
 
 var SUCCESS_CODE = 200
 var FAILED_CODE = 500
+
+function convertTodos(todos) {
+    if (Array.isArray(todos)) {
+        return todos.map(todo => {
+            return {
+                id: todo._id,
+                text: todo.text,
+                completed: todo.completed
+            }
+        })
+    } else {
+        return {
+            id: todos._id,
+            text: todos.text,
+            completed: todos.completed
+        }
+    }
+}
 
 function successWrap(result) {
     return {
@@ -37,21 +55,21 @@ function getResult(err, result) {
 
 function getTodos(req, res) {
     Todo.find((err, todos) => {
-        res.json(getResult(err, todos))
+        res.json(getResult(err, convertTodos(todos)))
     })
 }
 
 function addTodo(req, res) {
     var todo = new Todo(Object.assign({}, req.body))
     todo.save(err => {
-        res.json(getResult(err, todo))
+        res.json(getResult(err, convertTodos(todo)))
     })
 }
 
 function deleteTodo(req, res) {
     var id = req.params.id
     Todo.remove({_id: id}, (err, removed) => {
-        res.json(getResult(err, removed))
+        res.json(getResult(err, {id: id}))
     })
 }
 
@@ -67,7 +85,7 @@ function updateTodo(req, res) {
     Todo.findOneAndUpdate({_id: id}, todo, {
         new: true
     }, (err, todo) => {
-        res.json(getResult(err, todo))
+        res.json(getResult(err, convertTodos(todo)))
     })
 }
 
@@ -85,7 +103,7 @@ function updateTodos(req, res) {
             }
         })
     }, function(err) {
-        res.json(getResult(err, newTodos))
+        res.json(getResult(err, convertTodos(newTodos)))
     });
 }
 
