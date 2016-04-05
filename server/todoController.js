@@ -55,12 +55,13 @@ function getResult(err, result) {
 
 function getTodos(req, res) {
     Todo.find((err, todos) => {
-        res.json(getResult(err, convertTodos(todos)))
+        res.json(getResult(err, convertTodos(todos.reverse())))
     })
 }
 
 function addTodo(req, res) {
     var todo = new Todo(Object.assign({}, req.body))
+    todo.completed = false
     todo.save(err => {
         res.json(getResult(err, convertTodos(todo)))
     })

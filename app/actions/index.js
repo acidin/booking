@@ -15,7 +15,7 @@ export function addTodo(text) {
         return fetch(`/api/todos/`, {
             headers: JSON_HEADERS,
             method: 'POST',
-            body: JSON.stringify({text, completed: false})
+            body: JSON.stringify({text})
         }).then(response => response.json())
             .then(json => dispatch(_addTodo(json.result)))
     }
