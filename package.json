@@ -4,9 +4,7 @@
   "description": "Youfan Todo sample",
   "scripts": {
     "start": "node server.dev.js",
-    "deploy": "webpack -p --config app/webpack.production.config.js --define process.env.NODE_ENV='\"production\"'",
-    "test": "cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register --require ./app/test/setup.js",
-    "test:watch": "npm test -- --watch"
+    "deploy": "webpack -p --config app/webpack.production.config.js --define process.env.NODE_ENV='\"production\"'"
   },
   "repository": {
     "type": "git",

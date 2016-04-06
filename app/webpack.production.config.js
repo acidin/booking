@@ -2,8 +2,8 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    entry: [
-        './index'
+    entry: [,
+        './app/index'
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -23,8 +23,7 @@ module.exports = {
             },
             {
                 test: /\.css?$/,
-                loaders: ['style', 'raw'],
-                include: __dirname
+                loaders: ['style', 'raw']
             }
         ]
     }

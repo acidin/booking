@@ -17,3 +17,7 @@ mongod --config /usr/local/etc/mongod.conf
 * npm install
 
 * npm run start
+
+### 生成静态文件
+
+* npm run deploy
