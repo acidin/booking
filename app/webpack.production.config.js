@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    entry: [,
+    entry: [
         './app/index'
     ],
     output: {

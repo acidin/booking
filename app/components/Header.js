@@ -21,7 +21,7 @@ class Header extends Component {
             <header className="header">
                 <h1>
                     <span>NEI Todos</span>
-                    <span style={fontSize}>您好, HuntBao</span>
+                    <span style={fontSize}>您好, <a href="#" className="user-name">HuntBao</a></span>
                 </h1>
                 <TodoTextInput newTodo
                                onSave={this.handleSave.bind(this)}
