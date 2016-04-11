@@ -3,8 +3,8 @@ import todos from './todos'
 import appStatus from './appstatus'
 
 const rootReducer = combineReducers({
-    todos,
-    appStatus
+  todos,
+  appStatus
 })
 
 export default rootReducer

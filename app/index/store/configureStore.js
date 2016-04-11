@@ -4,19 +4,19 @@ import createLogger from 'redux-logger'
 import rootReducer from '../reducers'
 
 export default function configureStore(initialState) {
-    const store = createStore(
-        rootReducer,
-        initialState,
-        applyMiddleware(thunkMiddleware, createLogger())
-    )
+  const store = createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(thunkMiddleware, createLogger())
+  )
 
-    if (module.hot) {
-        // Enable Webpack hot module replacement for reducers
-        module.hot.accept('../reducers', () => {
-            const nextReducer = require('../reducers').default
-            store.replaceReducer(nextReducer)
-        })
-    }
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextReducer = require('../reducers').default
+      store.replaceReducer(nextReducer)
+    })
+  }
 
-    return store
+  return store
 }
