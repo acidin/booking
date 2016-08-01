@@ -1,3 +1,9 @@
+Stack:
+* React with Redux
+
+* MongoDB
+
+
 DEVELOPMENT
 
 * npm install
