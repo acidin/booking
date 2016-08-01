@@ -23,7 +23,7 @@ class Header extends Component {
       <header className="header">
         <h1>
           <span>NEI Todos</span>
-          <span style={fontSize}>您好, <a href="#" className="user-name">{util.cookie('name')}</a></span>
+          <span style={fontSize}>Hello, <a href="#" className="user-name">{util.cookie('name')}</a></span>
         </h1>
         <TodoTextInput newTodo
                        onSave={this.handleSave.bind(this)}

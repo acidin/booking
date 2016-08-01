@@ -5,7 +5,7 @@ import './login/login.styl'
   var form = document.getElementById('form')
   form.addEventListener('submit', function (e) {
     if (name.value.trim() === '') {
-      alert('请输入用户名')
+      alert('Name must be not empty')
       name.focus()
       e.preventDefault()
     }
