@@ -1,18 +1,18 @@
 {
-  "name": "youfan-todo-sample",
+  "name": "booking",
   "version": "0.0.0",
-  "description": "Youfan Todo sample",
+  "description": "Booking app sample",
   "scripts": {
     "start": "node server.dev.js",
     "deploy": "webpack -p --config app/webpack.production.config.js --define process.env.NODE_ENV='\"production\"'"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/huntbao/youfan-todo-sample.git"
+    "url": "https://github.com/acidin/booking.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/huntbao/youfan-todo-sample/issues"
+    "url": "https://github.com/acidin/booking/issues"
   },
   "dependencies": {
     "async": "^2.0.0-rc.2",
