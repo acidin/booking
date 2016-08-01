@@ -10,8 +10,8 @@ import 'react-datetime/css/react-datetime.css'
 const store = configureStore()
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
 )

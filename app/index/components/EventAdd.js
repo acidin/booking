@@ -19,8 +19,8 @@ class EventAdd extends Component {
                 <Datetime />
                 <Datetime />
                 <input
-                       type="text"
-                       onKeyDown={this.handleSubmit.bind(this)}
+                    type="text"
+                    onKeyDown={this.handleSubmit.bind(this)}
                 />
 
             </section>
