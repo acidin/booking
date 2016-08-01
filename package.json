@@ -21,13 +21,20 @@
     "classnames": "^2.1.2",
     "cookie-parser": "^1.4.1",
     "isomorphic-fetch": "^2.2.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "less-plugin-autoprefix": "^1.5.1",
+    "moment": "^2.14.1",
     "mongoose": "^4.4.10",
+    "postcss-loader": "^0.9.1",
     "react": "^0.14.7",
+    "react-big-calendar": "^0.10.3",
     "react-dom": "^0.14.7",
     "react-redux": "^4.2.1",
     "redux": "^3.2.1",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "stylus-loader": "^2.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",
