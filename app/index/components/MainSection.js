@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+
 import TodoItem from './TodoItem'
+import EventAdd from './EventAdd'
 import Footer from './Footer'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
+
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
@@ -68,9 +71,10 @@ class MainSection extends Component {
     return (
       <section className="main">
         {this.renderToggleAll(completedCount)}
+          <EventAdd />
         <ul className="todo-list">
           {
-            isFetching ? <li style={loadingStyle}>加载中....</li> : filteredTodos.map(todo =>
+            isFetching ? <li style={loadingStyle}>authorizing....</li> : filteredTodos.map(todo =>
               <TodoItem key={todo.id} todo={todo} {...actions} />
             )
           }

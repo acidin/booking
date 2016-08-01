@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import App from './index/containers/App'
 import configureStore from './index/store/configureStore'
 import 'todomvc-app-css/index.css'
+import 'react-datetime/css/react-datetime.css'
 
 const store = configureStore()
 
