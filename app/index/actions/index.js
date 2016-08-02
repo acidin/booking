@@ -25,12 +25,12 @@ function _addEvent(event) {
     return {type: types.ADD_EVENT, event}
 }
 
-export function addEvent(title) {
+export function addEvent(title, start) {
     return dispatch => {
         return fetch(`/api2/events/`, {
             headers: JSON_HEADERS,
             method: 'POST',
-            body: JSON.stringify({title})
+            body: JSON.stringify({title, start})
         }).then(response => response.json())
             .then(json => dispatch(_addEvent(json.result)))
     }

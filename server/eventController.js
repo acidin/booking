@@ -65,7 +65,7 @@ function addEvent(req, res) {
     var event = new EventBook(Object.assign({}, req.body))
     console.log(req.body);
    // event.text = 'ppppppp'
-    event.start = new Date()
+ //   event.start = new Date()
  /*   event.end = '06-06-2016'*/
     event.save(err => {
         res.json(getResult(err, convertEvents(event)))

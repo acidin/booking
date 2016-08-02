@@ -11,9 +11,9 @@ class Header extends Component {
         }
     }
 
-    handleSave2(text) {
+    handleSave2(text, datetime) {
         if (text.length !== 0) {
-            this.props.addEvent(text)
+            this.props.addEvent(text, datetime)
         }
     }
 

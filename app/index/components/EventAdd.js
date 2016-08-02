@@ -6,8 +6,9 @@ class EventAdd extends Component {
 
     handleSubmit(e) {
         const text = e.target.value.trim()
+        let datenow = new Date()
         if (e.which === 13) {
-            this.props.onSave(text)
+            this.props.onSave(text, datenow)
         }
     }
 
