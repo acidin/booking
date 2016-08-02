@@ -3,6 +3,7 @@ var cookieParser = require('cookie-parser')
 var mongoose = require('mongoose')
 //controllers
 var todoController = require('./server/todoController')
+var eventController = require('./server/eventController')
 var webpack = require('webpack')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
@@ -22,6 +23,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use("/api", todoController);
+
+app.use("/api2", eventController);
 
 app.get("/", function (req, res) {
     var name = req.cookies && req.cookies.name;

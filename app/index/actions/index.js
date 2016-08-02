@@ -21,6 +21,21 @@ export function addTodo(text) {
     }
 }
 
+function _addEvent(event) {
+    return {type: types.ADD_EVENT, event}
+}
+
+export function addEvent(text) {
+    return dispatch => {
+        return fetch(`/api/events/`, {
+            headers: JSON_HEADERS,
+            method: 'POST',
+            body: JSON.stringify({text})
+        }).then(response => response.json())
+            .then(json => dispatch(_addEvent(json.result)))
+    }
+}
+
 function _deleteTodo(id) {
     return {type: types.DELETE_TODO, id}
 }
