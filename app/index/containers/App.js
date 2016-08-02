@@ -6,7 +6,7 @@ import MainSection from '../components/MainSection'
 import BigCalendar from 'react-big-calendar';
 import * as TodoActions from '../actions'
 
-import events from '../events';
+import events2 from '../events';
 
 import moment from 'moment';
 
@@ -25,14 +25,14 @@ class App extends Component {
     }
 
     render() {
-        const { todos, actions, isFetching } = this.props
+        const { todos, events, actions, isFetching } = this.props
         return (
             <div>
                 <Header addTodo={actions.addTodo} addEvent={actions.addEvent} />
                 <MainSection todos={todos} actions={actions} isFetching={isFetching}/>
                 <BigCalendar
                     defaultView='week'
-                    events={events}
+                    events={events2}
                     defaultDate={new Date(2015, 3, 1)}
                     views={['week']}
                 />
@@ -43,17 +43,19 @@ class App extends Component {
 
 App.propTypes = {
     todos: PropTypes.array.isRequired,
+    events: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state) {
-    const { todos, appStatus} = state
+    const { todos, events, appStatus} = state
     const { isFetching } = {
         isFetching: appStatus.isFetching
     }
     return {
         todos,
+        events,
         isFetching
     }
 }

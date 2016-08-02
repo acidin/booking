@@ -12,7 +12,6 @@ class Header extends Component {
     }
 
     handleSave2(text) {
-        console.log(text.events);
         if (text.length !== 0) {
             this.props.addEvent(text)
         }
