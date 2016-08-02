@@ -3,12 +3,14 @@ import Datetime from 'react-datetime'
 
 class EventAdd extends Component {
 
+
     handleSubmit(e) {
-        const title = e.target.value.trim()
+        const text = e.target.value.trim()
         if (e.which === 13) {
-            this.props.onSave(title)
+            this.props.onSave(text)
         }
     }
+
 
     render() {
         return (
@@ -27,5 +29,6 @@ class EventAdd extends Component {
 
     }
 }
+
 
 export default EventAdd

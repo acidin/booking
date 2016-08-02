@@ -12,7 +12,7 @@ class Header extends Component {
     }
 
     handleSave2(text) {
-        console.log(text);
+        console.log(text.events);
         if (text.length !== 0) {
             this.props.addEvent(text)
         }
@@ -27,7 +27,7 @@ class Header extends Component {
             color: '#666',
             fontWeight: 'bold'
         }
-        console.log(util.cookie('name'))
+      //  console.log(util.cookie('name'))
         return (
             <header className="header">
                 <h1>

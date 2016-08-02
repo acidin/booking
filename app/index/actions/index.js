@@ -27,7 +27,7 @@ function _addEvent(event) {
 
 export function addEvent(text) {
     return dispatch => {
-        return fetch(`/api/events/`, {
+        return fetch(`/api2/events/`, {
             headers: JSON_HEADERS,
             method: 'POST',
             body: JSON.stringify({text})

@@ -1,6 +1,6 @@
 var mongoose = require("mongoose")
 var eventSchema = mongoose.Schema({
-    title: String
+    text: String
 })
 
 module.exports = mongoose.model("event", eventSchema)

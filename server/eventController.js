@@ -63,7 +63,8 @@ function getEvents(req, res) {
 
 function addEvent(req, res) {
     var event = new EventBook(Object.assign({}, req.body))
-    event.title = 'sssssss'
+    console.log(req.body);
+   // event.text = 'ppppppp'
 /*    event.start = '06-06-2016'
     event.end = '06-06-2016'*/
     event.save(err => {
