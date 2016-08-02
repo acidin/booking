@@ -1,6 +1,6 @@
 var util = require('util')
 var async = require('async')
-var Event = require("./event")
+var EventBook = require("./event")
 
 var router = require("express").Router()
 router.route("/events").get(getEvents).post(addEvent).put(updateEvents)
@@ -14,17 +14,17 @@ function convertEvents(events) {
         return events.map(event => {
             return {
                 id: event._id,
-                title: event.title,
+                title: event.title/*,
                 start: event.start,
-                end: event.end
+                end: event.end*/
             }
         })
     } else {
         return {
             id: events._id,
-            title: events.title,
+            title: events.title/*,
             start: events.start,
-            end: events.end
+            end: events.end*/
         }
     }
 }
@@ -56,14 +56,16 @@ function getResult(err, result) {
 }
 
 function getEvents(req, res) {
-    Event.find((err, events) => {
+    EventBook.find((err, events) => {
         res.json(getResult(err, convertEvents(events.reverse())))
     })
 }
 
 function addEvent(req, res) {
-    var event = new Event(Object.assign({}, req.body))
-    event.completed = false
+    var event = new EventBook(Object.assign({}, req.body))
+    event.title = 'sssssss'
+/*    event.start = '06-06-2016'
+    event.end = '06-06-2016'*/
     event.save(err => {
         res.json(getResult(err, convertEvents(event)))
     })
@@ -71,7 +73,7 @@ function addEvent(req, res) {
 
 function deleteEvent(req, res) {
     var id = req.params.id
-    Event.remove({_id: id}, (err, removed) => {
+    EventBook.remove({_id: id}, (err, removed) => {
         res.json(getResult(err, {id: id}))
     })
 }
@@ -88,7 +90,7 @@ function updateEvent(req, res) {
     if (!util.isUndefined(req.body.end)) {
         event.end = req.body.end
     }
-    Event.findOneAndUpdate({_id: id}, event, {
+    EventBook.findOneAndUpdate({_id: id}, event, {
         new: true
     }, (err, event) => {
         res.json(getResult(err, convertEvents(event)))
@@ -101,7 +103,7 @@ function updateEvents(req, res) {
     var end = req.body.end
     var newEvents = []
     async.eachSeries(ids, function (id, cb) {
-        Event.findOneAndUpdate({_id: id}, {start: start}, {end: end}, {
+        EventBook.findOneAndUpdate({_id: id}, {start: start}, {end: end}, {
             new: true
         }, (err, event) => {
             if (!err) {

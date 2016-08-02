@@ -4,12 +4,9 @@ import Datetime from 'react-datetime'
 class EventAdd extends Component {
 
     handleSubmit(e) {
-        const text = e.target.value.trim()
+        const title = e.target.value.trim()
         if (e.which === 13) {
-            this.props.onSave(text)
-            if (this.props.newTodo) {
-                this.setState({text: ''})
-            }
+            this.props.onSave(title)
         }
     }
 

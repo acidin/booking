@@ -28,7 +28,7 @@ class App extends Component {
         const { todos, actions, isFetching } = this.props
         return (
             <div>
-                <Header addTodo={actions.addTodo}/>
+                <Header addTodo={actions.addTodo} addEvent={actions.addEvent} />
                 <MainSection todos={todos} actions={actions} isFetching={isFetching}/>
                 <BigCalendar
                     defaultView='week'

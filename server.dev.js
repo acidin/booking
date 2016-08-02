@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
 
 app.use("/api", todoController);
 
-app.use("/api2", eventController);
+//app.use("/api2", eventController);
 
 app.get("/", function (req, res) {
     var name = req.cookies && req.cookies.name;

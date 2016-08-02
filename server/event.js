@@ -1,8 +1,6 @@
 var mongoose = require("mongoose")
 var eventSchema = mongoose.Schema({
-    title: String,
-    start: Date,
-    end: Date
+    title: String
 })
 
-module.exports = mongoose.model("todo", eventSchema)
+module.exports = mongoose.model("event", eventSchema)
