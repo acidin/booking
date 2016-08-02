@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
+var Autoprefixer = require('less-plugin-autoprefix')
 
 module.exports = {
   entry: {
@@ -20,6 +21,13 @@ module.exports = {
     }),
     new ExtractTextPlugin("[name].css")
   ],
+    lessLoader: {
+        lessPlugins: [
+            new Autoprefixer({
+                browsers: ['last 2 versions', "ie >= 10"]
+            })
+        ]
+    },
   module: {
     loaders: [
       {
@@ -35,7 +43,10 @@ module.exports = {
       {
         test: /\.styl$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!stylus-loader")
-      }
+      },
+        {
+            test: /\.less/, loader: 'style-loader!css-loader!postcss-loader!less-loader', exclude: /node_modules/
+        }
     ]
   }
 }
