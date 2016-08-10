@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
 import BigCalendar from 'react-big-calendar';
-import * as TodoActions from '../actions'
+import * as TodoActions from '../actions/index'
 
 import events2 from '../events';
 
@@ -22,17 +22,20 @@ class App extends Component {
     componentDidMount() {
         const { actions } = this.props
         actions.fetchTodos()
+        actions.fetchEvents()
     }
 
     render() {
         const { todos, events, actions, isFetching } = this.props
+        console.log(events);
+        console.log(todos);
         return (
             <div>
                 <Header addTodo={actions.addTodo} addEvent={actions.addEvent} />
                 <MainSection todos={todos} actions={actions} isFetching={isFetching}/>
                 <BigCalendar
                     defaultView='week'
-                    events={events2}
+                    events={events}
                     defaultDate={new Date(2015, 3, 1)}
                     views={['week']}
                 />

@@ -25,12 +25,12 @@ function _addEvent(event) {
     return {type: types.ADD_EVENT, event}
 }
 
-export function addEvent(title, start) {
+export function addEvent(title, start, end) {
     return dispatch => {
         return fetch(`/api2/events/`, {
             headers: JSON_HEADERS,
             method: 'POST',
-            body: JSON.stringify({title, start})
+            body: JSON.stringify({title, start, end})
         }).then(response => response.json())
             .then(json => dispatch(_addEvent(json.result)))
     }
@@ -121,5 +121,27 @@ export function fetchTodos() {
         return fetch(`/api/todos/`)
             .then(response => response.json())
             .then(json => dispatch(receiveTodos(json)))
+    }
+}
+
+function requestEvents() {
+    return {
+        type: types.REQUEST_EVENTS
+    }
+}
+
+function receiveEvents(json) {
+    return {
+        type: types.RECEIVE_EVENTS,
+        events: json.result
+    }
+}
+
+export function fetchEvents() {
+    return dispatch => {
+        dispatch(requestEvents())
+        return fetch(`/api2/events/`)
+            .then(response => response.json())
+            .then(json => dispatch(receiveEvents(json)))
     }
 }

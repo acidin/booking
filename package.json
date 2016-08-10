@@ -17,6 +17,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.2",
     "babel-polyfill": "^6.3.14",
+    "babel-preset-stage-0": "^6.5.0",
     "body-parser": "^1.15.0",
     "classnames": "^2.1.2",
     "cookie-parser": "^1.4.1",

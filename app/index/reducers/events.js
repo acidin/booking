@@ -1,14 +1,12 @@
 import {
-    ADD_EVENT
+    ADD_EVENT,
+    RECEIVE_EVENTS
 
 } from '../constants/ActionTypes'
 
 const initialState = [
     {
-        id: 0,
-        title: 'Some text',
-        /*start: '6-6-2016',
-        end: '6-6-2016'*/
+        id: 0
     }
 ]
 
@@ -20,6 +18,8 @@ export default function events(state = initialState, action) {
                 ...state
             ]
 
+        case RECEIVE_EVENTS:
+            return state = action.events
 
 
         default:

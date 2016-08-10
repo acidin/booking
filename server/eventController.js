@@ -15,16 +15,16 @@ function convertEvents(events) {
             return {
                 id: event._id,
                 title: event.title,
-                start: event.start/*,
-                end: event.end*/
+                start: event.start,
+                end: event.end
             }
         })
     } else {
         return {
             id: events._id,
             title: events.title,
-            start: events.start/*,
-            end: events.end*/
+            start: events.start,
+            end: events.end
         }
     }
 }
@@ -64,9 +64,6 @@ function getEvents(req, res) {
 function addEvent(req, res) {
     var event = new EventBook(Object.assign({}, req.body))
     console.log(req.body);
-   // event.text = 'ppppppp'
- //   event.start = new Date()
- /*   event.end = '06-06-2016'*/
     event.save(err => {
         res.json(getResult(err, convertEvents(event)))
     })
