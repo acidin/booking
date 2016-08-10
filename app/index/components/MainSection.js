@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
 import TodoItem from './TodoItem'
-import EventAdd from './EventAdd'
+
 import Footer from './Footer'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
 
@@ -71,7 +71,7 @@ class MainSection extends Component {
         return (
             <section className="main">
                 {this.renderToggleAll(completedCount)}
-                <EventAdd />
+
                 <ul className="todo-list">
                     {
                         isFetching ? <li style={loadingStyle}>authorizing....</li> : filteredTodos.map(todo =>

@@ -61,6 +61,7 @@ function getTodos(req, res) {
 
 function addTodo(req, res) {
     var todo = new Todo(Object.assign({}, req.body))
+    console.log(todo.text);
     todo.completed = false
     todo.save(err => {
         res.json(getResult(err, convertTodos(todo)))
@@ -107,5 +108,6 @@ function updateTodos(req, res) {
         res.json(getResult(err, convertTodos(newTodos)))
     });
 }
+
 
 module.exports = router

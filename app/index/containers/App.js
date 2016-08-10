@@ -3,38 +3,30 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
-import BigCalendar from 'react-big-calendar';
-import * as TodoActions from '../actions'
+import Calendar from '../components/Calendar'
 
-import events from '../events';
-
-import moment from 'moment';
-
-import '../less/styles.less';
-import '../less/prism.less';
-
-BigCalendar.setLocalizer(
-    BigCalendar.momentLocalizer(moment)
-);
+import * as TodoActions from '../actions/index'
 
 class App extends Component {
 
     componentDidMount() {
         const { actions } = this.props
         actions.fetchTodos()
+        actions.fetchEvents()
     }
 
     render() {
-        const { todos, actions, isFetching } = this.props
+        const { todos, events, actions, isFetching } = this.props
+        console.log(actions);
+       /* console.log(events);
+        console.log(todos);*/
         return (
             <div>
-                <Header addTodo={actions.addTodo}/>
+                <Header addTodo={actions.addTodo} addEvent={actions.addEvent} />
                 <MainSection todos={todos} actions={actions} isFetching={isFetching}/>
-                <BigCalendar
-                    defaultView='week'
+                <Calendar
                     events={events}
-                    defaultDate={new Date(2015, 3, 1)}
-                    views={['week']}
+                    deleteEvent={actions.deleteEvent}
                 />
             </div>
         )
@@ -43,17 +35,19 @@ class App extends Component {
 
 App.propTypes = {
     todos: PropTypes.array.isRequired,
+    events: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state) {
-    const { todos, appStatus} = state
+    const { todos, events, appStatus} = state
     const { isFetching } = {
         isFetching: appStatus.isFetching
     }
     return {
         todos,
+        events,
         isFetching
     }
 }

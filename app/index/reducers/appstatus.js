@@ -1,6 +1,8 @@
 import {
     REQUEST_TODOS,
-    RECEIVE_TODOS
+    RECEIVE_TODOS,
+    REQUEST_EVENTS,
+    RECEIVE_EVENTS
 } from '../constants/ActionTypes'
 
 const initialState = {
@@ -18,6 +20,17 @@ export default function appStatus(state = initialState, action) {
             return Object.assign({}, initialState, {
                 isFetching: false
             })
+        case REQUEST_EVENTS:
+            return Object.assign({}, initialState, {
+                isFetching: true
+            })
+
+        case RECEIVE_EVENTS:
+            return Object.assign({}, initialState, {
+                isFetching: false
+            })
+
+
 
         default:
             return state
