@@ -25,10 +25,15 @@ class App extends Component {
         actions.fetchEvents()
     }
 
+    handleSelectEvent =(event) => {
+        console.log(event)
+        actions.deleteEvent(event.id)
+    }
+
     render() {
         const { todos, events, actions, isFetching } = this.props
-        console.log(events);
-        console.log(todos);
+       /* console.log(events);
+        console.log(todos);*/
         return (
             <div>
                 <Header addTodo={actions.addTodo} addEvent={actions.addEvent} />
@@ -38,6 +43,8 @@ class App extends Component {
                     events={events}
                     defaultDate={new Date()}
                     views={['week']}
+                    selectable
+                    onSelectEvent={this.handleSelectEvent}
                 />
             </div>
         )

@@ -145,3 +145,16 @@ export function fetchEvents() {
             .then(json => dispatch(receiveEvents(json)))
     }
 }
+
+function _deleteEvent(id) {
+    return {type: types.DELETE_EVENT, id}
+}
+
+export function deleteEvent(id) {
+    return dispatch => {
+        return fetch(`/api2/events/${id}`, {
+            method: 'DELETE'
+        }).then(response => response.json())
+            .then(json => dispatch(_deleteEvent(id)))
+    }
+}
