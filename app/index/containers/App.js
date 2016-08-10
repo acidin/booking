@@ -3,19 +3,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
-import BigCalendar from 'react-big-calendar';
+import Calendar from '../components/Calendar'
+
 import * as TodoActions from '../actions/index'
-
-import events2 from '../events';
-
-import moment from 'moment';
-
-import '../less/styles.less';
-import '../less/prism.less';
-
-BigCalendar.setLocalizer(
-    BigCalendar.momentLocalizer(moment)
-);
 
 class App extends Component {
 
@@ -25,26 +15,18 @@ class App extends Component {
         actions.fetchEvents()
     }
 
-    handleSelectEvent =(event) => {
-        console.log(event)
-        actions.deleteEvent(event.id)
-    }
-
     render() {
         const { todos, events, actions, isFetching } = this.props
+        console.log(actions);
        /* console.log(events);
         console.log(todos);*/
         return (
             <div>
                 <Header addTodo={actions.addTodo} addEvent={actions.addEvent} />
                 <MainSection todos={todos} actions={actions} isFetching={isFetching}/>
-                <BigCalendar
-                    defaultView='week'
+                <Calendar
                     events={events}
-                    defaultDate={new Date()}
-                    views={['week']}
-                    selectable
-                    onSelectEvent={this.handleSelectEvent}
+                    deleteEvent={actions.deleteEvent}
                 />
             </div>
         )
