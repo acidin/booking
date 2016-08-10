@@ -1,12 +1,12 @@
 export default [
   {
-    'title': 'All Day Event',
-    'allDay': true,
-    'start': new Date(2015, 3, 0),
-    'end': new Date(2015, 3, 0)
-  },
+    title: 'All Day Event',
+    start: new Date("2016-08-10T22:00:00.000Z"),
+    end: new Date("2016-08-10T23:00:00.000Z")
+  }/*,
   {
     'title': 'Long Event',
+     'allDay': true,
     'start': new Date(2015, 3, 7),
     'end': new Date(2015, 3, 10)
   },
@@ -66,5 +66,5 @@ export default [
     'title': 'Birthday Party',
     'start':new Date(2015, 3, 13, 7, 0, 0),
     'end': new Date(2015, 3, 13, 10, 30, 0)
-  }
+  }*/
 ]

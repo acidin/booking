@@ -36,7 +36,7 @@ class App extends Component {
                 <BigCalendar
                     defaultView='week'
                     events={events}
-                    defaultDate={new Date(2015, 3, 1)}
+                    defaultDate={new Date()}
                     views={['week']}
                 />
             </div>

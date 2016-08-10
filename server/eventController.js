@@ -15,16 +15,16 @@ function convertEvents(events) {
             return {
                 id: event._id,
                 title: event.title,
-                start: event.start,
-                end: event.end
+                start: new Date(event.start),
+                end: new Date(event.end)
             }
         })
     } else {
         return {
             id: events._id,
             title: events.title,
-            start: events.start,
-            end: events.end
+            start: new Date(events.start),
+            end: new Date(events.end)
         }
     }
 }
