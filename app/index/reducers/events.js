@@ -1,6 +1,7 @@
 import {
     ADD_EVENT,
-    RECEIVE_EVENTS
+    RECEIVE_EVENTS,
+    DELETE_EVENT
 
 } from '../constants/ActionTypes'
 
@@ -17,6 +18,11 @@ export default function events(state = initialState, action) {
                 action.event,
                 ...state
             ]
+
+        case DELETE_EVENT:
+            return state.filter(event =>
+                event.id !== action.id
+            )
 
         case RECEIVE_EVENTS:
             return state = action.events
