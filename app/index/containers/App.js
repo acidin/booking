@@ -18,6 +18,7 @@ class App extends Component {
     render() {
         const { todos, events, actions, isFetching } = this.props
         console.log(actions);
+
        /* console.log(events);
         console.log(todos);*/
         return (
